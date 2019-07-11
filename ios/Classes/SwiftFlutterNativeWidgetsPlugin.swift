@@ -36,9 +36,13 @@ public class SwiftFlutterNativeWidgetsPlugin: NSObject, FlutterPlugin {
         alertController.addAction(UIAlertAction(title: alertData.positiveButtonText, style: alertData.destructive ? .destructive : .default, handler: { _ in
             result(true)
         }))
-        alertController.addAction(UIAlertAction(title: alertData.negativeButtonText, style: .cancel, handler: { _ in
-            result(false)
-        }))
+        
+        if (alertData.negativeButtonText != "") {
+            alertController.addAction(UIAlertAction(title: alertData.negativeButtonText, style: .cancel, handler: { _ in
+                result(false)
+            }))
+        }
+        
         return alertController
     }
     
